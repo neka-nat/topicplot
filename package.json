@@ -1,0 +1,44 @@
+{
+  "name": "topicplot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -rf ./node_modules package-lock.json && npm i",
+    "build": "webpack",
+    "start": "webpack-dev-server --mode development --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neka-nat/topicplot.git"
+  },
+  "author": "neka-nat",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/neka-nat/topicplot/issues"
+  },
+  "homepage": "https://github.com/neka-nat/topicplot#readme",
+  "dependencies": {
+    "plotly.js": "^2.6.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-plotly.js": "^2.5.1",
+    "roslib": "^1.1.0",
+    "webworkify": "file:webworkify"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@types/roslib": "^1.1.7",
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^9.2.6",
+    "tslint": "^6.1.3",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  }
+}
