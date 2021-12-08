@@ -2,7 +2,24 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import { Ros, Topic, Message } from 'roslib';
 
-export class LinePlot extends React.Component {
+interface LineData {
+  x: number[]
+  y: number[]
+  mode: string
+}
+
+interface LineLayout {
+  datarevision: number
+  title: string
+}
+
+interface LineState {
+  line: LineData
+  layout: LineLayout
+  revision: number
+}
+
+export class LinePlot extends React.Component<{}, LineState> {
   state = {
     line: {
       x: [1, 2, 3],
@@ -18,6 +35,9 @@ export class LinePlot extends React.Component {
   ros = new Ros({
     url: 'ws://localhost:9090'
   });
+  constructor(props: {}) {
+    super(props)
+  }
   componentDidMount() {
     try {
       this.ros.on('connection', () => {
