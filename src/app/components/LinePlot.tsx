@@ -20,23 +20,24 @@ interface LineState {
 }
 
 export class LinePlot extends React.Component<{}, LineState> {
-  state = {
-    line: {
-      x: [1, 2, 3],
-      y: [2, 6, 3],
-      mode: 'lines+markers',
-    },
-    layout: {
-      datarevision: 0,
-      title: 'A Line Plot'
-    },
-    revision: 0,
-  };
   ros = new Ros({
     url: 'ws://localhost:9090'
   });
   constructor(props: {}) {
     super(props)
+    this.state = {
+      line: {
+        x: [1, 2, 3],
+        y: [2, 6, 3],
+        mode: 'lines+markers',
+      },
+      layout: {
+        datarevision: 0,
+        title: 'A Line Plot'
+      },
+      revision: 0,
+    };
+    this.updateGraph = this.updateGraph.bind(this);
   }
   componentDidMount() {
     try {
