@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 import * as ROSLIB from "roslib";
 
+type TopicsInfo = {
+  topics: string[];
+  types: string[];
+};
+
+
 export const useRosClient = (rosbridgeUrl: string) => {
   const [rosClient, setRosClient] = useState<ROSLIB.Ros | undefined>(undefined);
+  const [topicsInfo, setTopicsInfo] = useState<TopicsInfo | undefined>(undefined);
 
   useEffect(() => {
     const client = new ROSLIB.Ros({ url: rosbridgeUrl });
@@ -52,9 +59,17 @@ export const useRosClient = (rosbridgeUrl: string) => {
     topic.unsubscribe();
   }
 
+  useEffect(() => {
+    if (!rosClient) return;
+    rosClient.getTopics((newTopics) => {
+      setTopicsInfo(newTopics);
+    });
+  }, [rosClient]);
+
   return {
     rosClient,
     subscribeTopic,
     unsubscribeTopic,
+    topicsInfo,
   };
 };

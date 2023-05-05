@@ -8,7 +8,7 @@ import ROSLIB from "roslib";
 
 function App() {
   const [plotData, setPlotData] = useState<{ [key: string]: Array<{ x: number; y: number }> }>({});
-  const { rosClient, subscribeTopic, unsubscribeTopic } = useRosClient("ws://localhost:9090");
+  const { rosClient, subscribeTopic, unsubscribeTopic, topicsInfo } = useRosClient("ws://localhost:9090");
   const messageType = "std_msgs/Float32";
 
   const handleAddTopic = (topicName: string, messageType: string) => {
@@ -42,7 +42,7 @@ function App() {
   return (
     <div>
       <h1>ROS Topic Plotter</h1>
-      {rosClient ? <TopicList rosClient={rosClient} /> : <p>Connecting to ROS...</p>}
+      {topicsInfo ? <TopicList {...topicsInfo} /> : <p>Connecting to ROS...</p>}
       <TopicConfig onAddTopic={handleAddTopic} />
       {Object.keys(plotData).map((topicName) => (
         <div key={topicName}>
